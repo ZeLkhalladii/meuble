@@ -40,7 +40,7 @@
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['password'] = $row['password'];
                 $_SESSION['user_id'] = $row['user_id'];
-
+                $_SESSION['login'] = 1;
                 //echo $_SESSION['email'];
 
                 // Redirect to posts page

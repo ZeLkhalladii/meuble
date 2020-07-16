@@ -1,4 +1,5 @@
 <?php
+session_start();
 $hostname = "localhost";
 $username = "root";
 $password = "mysql";
@@ -21,12 +22,29 @@ $conn = new mysqli($hostname, $username, $password, $dbname);
     <div id="container">  
         <div class="mockup">
         <div class="top" style="display: flex; justify-content: space-between;">
-            <img class="logo" src="https://www.uplabs.com/logos/uplabs/default--color.svg">
+            <img class="logo" src="img\tv.svg">
+           <?php 
+           if (isset($_SESSION['login'])){
+           ?> 
             <div id="notification" style=" margin-right: 20px;">
-                <button style="height: 40px; width: 100px;border: none; background-color: black;"><a href="login.php" style="color: white; text-decoration: none;">Signin</a></button>
-                <button style="height: 40px; width: 100px;border: none; background-color: black;"><a href="login.php" style="color: white; text-decoration: none;">Signup</a></button> 
-            </div>
+            <button style="height: 40px; width: 100px;border: none; background-color: black;"><a href="logout.php" style="color: white; text-decoration: none;">logout</a></button>
+            <button style="height: 40px; width: 100px;border: none; background-color: black;"><a href="card.php" style="color: white; text-decoration: none;">account</a></button> 
+
+             </div>
+        <?php
+
+           }else{ ?>
+            <div id="notification" style=" margin-right: 20px;">
+            <button style="height: 40px; width: 100px;border: none; background-color: black;"><a href="login.php" style="color: white; text-decoration: none;">Signin</a></button>
+            <button style="height: 40px; width: 100px;border: none; background-color: black;"><a href="login.php" style="color: white; text-decoration: none;">Signup</a></button> 
+      
+ </div>
+<?php
+           }
+           ?>
+           
           </div>
+        
           <div class="outer-search">
             <div class="search-filter">
             <div class="search-container">
@@ -44,7 +62,7 @@ $conn = new mysqli($hostname, $username, $password, $dbname);
          
              
               <?php
-              $posts = "SELECT * FROM login;";
+              $posts = "SELECT * FROM card";
               $all_posts = mysqli_query($conn, $posts);
                 while ($row = mysqli_fetch_array($all_posts)) {
                 //  <!-- if ($row['written_by'] == $username){ -->
@@ -54,7 +72,7 @@ $conn = new mysqli($hostname, $username, $password, $dbname);
                       <img src='".$row['image']."'  height='300px'/>
                       <div class='card-footer'>
                         <div class='card-info'>
-                          <h4>'".$row['username']."'</h4>
+                          <h4>".$row['title']."</h4>
                           <span class='card-maker'></span>
                         </div>
                       </div>
@@ -66,6 +84,7 @@ $conn = new mysqli($hostname, $username, $password, $dbname);
           </div>
         </div>
       </div>
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="searchAjax.js"></script>
 </body>
 </html>

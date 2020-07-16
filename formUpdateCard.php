@@ -17,7 +17,7 @@ $_SESSION['card_id'] = $_GET['id'];
   <body>
   <nav class="navbar" style="background: white;">
     <a class="navbar-brand" href="#">
-      <img src="https://www.uplabs.com/logos/uplabs/default--color.svg" width="70" height="50" alt="" loading="lazy">
+      <img src="img/tv.svg" width="70" height="50" alt="" loading="lazy">
     </a>
     <form  class="form-inline my-2 my-lg-0">
         <a class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</a>

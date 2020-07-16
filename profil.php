@@ -34,8 +34,8 @@ session_start();
 <body>
 
 <nav class="navbar" style="background: white;">
-    <a class="navbar-brand" href="#">
-      <img src="https://www.uplabs.com/logos/uplabs/default--color.svg" width="70" height="50" alt="" loading="lazy">
+    <a class="navbar-brand" href="index.php">
+      <img src="img\tv.svg" width="70" height="50" alt="" loading="lazy">
     </a>
     <form class="form-inline my-2 my-lg-0">
         <a href="logout.php" class="btn btn-outline-success my-2 my-sm-0" type="submit">logout</a>

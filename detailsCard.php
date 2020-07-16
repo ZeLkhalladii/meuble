@@ -9,7 +9,7 @@ $dbname = "meuble";
 
 $conn = mysqli_connect($hostname, $username, $password, $dbname);
 
-$id = $_GET['user_id'];
+$id = $_GET['id'];
 
 ?>
 
@@ -43,9 +43,7 @@ h1, h2, h3 {
 
 .container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  width: 100%;
   height: 100%;
 }
 
@@ -170,56 +168,65 @@ h1, h2, h3 {
 
 .form-inline{
     margin: 8px;
-        border: 1px solid green;
-        border-radius: 6px;
-        width: 78px;
-        padding: 10px;
+   padding: 10px;
     
 }
-nav{
-    background: white;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
+.form-inline a {
+  border-radius: 3px;
+    padding: 13px;
+    background: green;
+    color: white;
+    text-decoration: none;
+}
+}
+
+.navbar a {
+  padding-left:10px;
 }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <a class="navbar-brand" href="#">
-          <img src="https://www.uplabs.com/logos/uplabs/default--color.svg" width="70" height="50" alt="" loading="lazy">
-        </a>
-        <form class="form-inline my-2 my-lg-0" >
-            <a href="logout.php" class="btn btn-outline-success my-2 my-sm-0" type="submit">logout</a>
-            <a href="profil.php" class="btn btn-outline-success my-2 my-sm-0" type="submit">profil</a>
+<nav class="navbar" style="background: white;display:flex; justify-content:space-between;padding:0 10px 0 10px">
+    <a class="navbar-brand" href="index.php">
+      <img src="img/tv.svg" width="70" height="50" alt="" loading="lazy">
+    </a>
+    <form class="form-inline my-2 my-lg-0">
+        <a href="logout.php" class="btn btn-outline-success my-2 my-sm-0" type="submit">logout</a>
+        <a href="profil.php" class="btn btn-outline-success my-2 my-sm-0" type="submit">profil</a>
 
-
-        </form>
-      </nav>
+      </form>
+  </nav>
 
     
       <div class="container" style="margin: 30px;">
         <div class="card">
-            <div class="card-cover"><img src="https://images.unsplash.com/photo-1468165196271-4e91eae54eb2?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80" alt="cover" /></div>
+            <div class="card-cover"><img src="<?php
+      $task = "SELECT  image FROM card WHERE card_id=$id LIMIT 1";
+      $name_task = mysqli_query($conn, $task);
+      while ($row = mysqli_fetch_array($name_task)) {
+      echo $row['image'];
+  }
+  ?>" alt="cover" /></div>
             <div class="card-content">
             <div class="card__tag"><?php
-                    $task = "SELECT  title FROM card WHERE card_id=$id LIMIT 1";
-                    $name_task = mysqli_query($conn, $task);
-                    while ($row = mysqli_fetch_array($name_task)) {
-                    echo $row['title'];
-                    }
-                    ?>
+      $task = "SELECT  title FROM card WHERE card_id=$id LIMIT 1";
+      $name_task = mysqli_query($conn, $task);
+      while ($row = mysqli_fetch_array($name_task)) {
+      echo $row['title'];
+  }
+  ?>
+
                 </div>
                 <p class="card__title"><?php
-                    $task = "SELECT  description FROM card WHERE card_id=$id LIMIT 1";
-                    $name_task = mysqli_query($conn, $task);
-                    while ($row = mysqli_fetch_array($name_task)) {
-                    echo $row['description'];
-                    }
-                    ?>
+      $task = "SELECT  description FROM card WHERE card_id=$id LIMIT 1";
+      $name_task = mysqli_query($conn, $task);
+      while ($row = mysqli_fetch_array($name_task)) {
+      echo $row['description'];
+  }
+  ?>
                 </p>
-                <a href='' class="card__btn" type="button">back to home
+                <a href='card.php' class="card__btn" type="button">back to home
                     <span></span>
                 </a>
             </div>

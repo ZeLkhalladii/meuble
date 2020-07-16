@@ -20,6 +20,7 @@
              $email = htmlspecialchars(trim($_POST['email']));
        $_SESSION['email'] = $email;
        $_SESSION['image'] = $image;
+       
        $image = $_POST['image'];
              $password = md5($_POST['password']);
              $cpassword = md5($_POST['cpassword']);
@@ -28,6 +29,8 @@
                $sql = "INSERT INTO login  VALUES(NULL,'$username','$email', '$password','$cpassword', ' $image')";
 
                mysqli_query($conn, $sql);
+               $_SESSION['login'] = 1;
+
                header("Location: login.php");
 
              } else{
